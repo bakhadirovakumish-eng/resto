@@ -15,7 +15,8 @@ function Login({ onLogin }) {
     setLoading(true);
 
     try {
-      const endpoint = isRegister ? '/api/auth/register' : '/api/auth/login';
+      const API_URL = process.env.REACT_APP_API_URL || '';
+      const endpoint = isRegister ? `${API_URL}/auth/register` : `${API_URL}/auth/login`;
       const data = isRegister 
         ? { name, email, password } 
         : { email, password };
