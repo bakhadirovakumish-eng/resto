@@ -3,6 +3,7 @@ import axios from 'axios';
 import Menu from './components/Menu';
 import Orders from './components/Orders';
 import Dashboard from './components/Dashboard';
+import AddMenuItem from './components/AddMenuItem';
 import Login from './components/Login';
 import './App.css';
 
@@ -57,12 +58,20 @@ function App() {
             📦 Orders
           </button>
           {(user.role === 'admin' || user.role === 'manager') && (
-            <button 
-              className={currentView === 'dashboard' ? 'active' : ''}
-              onClick={() => setCurrentView('dashboard')}
-            >
-              📊 Dashboard
-            </button>
+            <>
+              <button 
+                className={currentView === 'dashboard' ? 'active' : ''}
+                onClick={() => setCurrentView('dashboard')}
+              >
+                📊 Dashboard
+              </button>
+              <button
+                className={currentView === 'addMenuItem' ? 'active' : ''}
+                onClick={() => setCurrentView('addMenuItem')}
+              >
+                ➕ Add Menu Item
+              </button>
+            </>
           )}
           <button onClick={handleLogout}>Logout</button>
         </nav>
@@ -72,6 +81,7 @@ function App() {
         {currentView === 'menu' && <Menu user={user} />}
         {currentView === 'orders' && <Orders user={user} />}
         {currentView === 'dashboard' && <Dashboard user={user} />}
+        {currentView === 'addMenuItem' && <AddMenuItem user={user} />}
       </main>
     </div>
   );
