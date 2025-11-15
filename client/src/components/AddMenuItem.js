@@ -4,7 +4,6 @@ import axios from 'axios';
 function AddMenuItem({ user }) {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [category, setCategory] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,15 +22,13 @@ function AddMenuItem({ user }) {
       const API_URL = process.env.REACT_APP_API_URL || '';
       await axios.post(`${API_URL}/menu`, {
         name,
-        price: Number(price),
-        category
+        price: Number(price)
       }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessage('Menu item added successfully!');
       setName('');
       setPrice('');
-      setCategory('');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to add menu item');
     } finally {
@@ -57,13 +54,7 @@ function AddMenuItem({ user }) {
           onChange={e => setPrice(e.target.value)}
           required
         />
-        <input
-          type="text"
-          placeholder="Category"
-          value={category}
-          onChange={e => setCategory(e.target.value)}
-          required
-        />
+
         {error && <div className="error">{error}</div>}
         {message && <div className="success">{message}</div>}
         <button type="submit" disabled={loading}>
