@@ -1,0 +1,3 @@
+{
+  "extends": ["./.github/copilot-instructions.md"]
+}
