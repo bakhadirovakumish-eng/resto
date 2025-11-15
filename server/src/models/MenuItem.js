@@ -7,7 +7,7 @@ const menuItemSchema = new mongoose.Schema({
   nameKk: String,
   description: String,
   price: { type: Number, required: true },
-  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: false },
   image: String,
   modifiers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Modifier' }],
   available: { type: Boolean, default: true },

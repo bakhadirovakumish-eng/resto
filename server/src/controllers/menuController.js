@@ -4,15 +4,13 @@ const Category = require('../models/Category');
 const createMenuItem = async (req, res) => {
   try {
     const { name, price, category, location } = req.body;
-    if (!name || !price || !category) {
-      return res.status(400).json({ message: 'Name, price, and category are required' });
+    if (!name || !price) {
+      return res.status(400).json({ message: 'Name and price are required' });
     }
-    const menuItem = new MenuItem({
-      name,
-      price,
-      category
-    });
-    if (location) menuItem.location = location;
+    const menuItemData = { name, price };
+    if (category) menuItemData.category = category;
+    if (location) menuItemData.location = location;
+    const menuItem = new MenuItem(menuItemData);
     await menuItem.save();
     res.status(201).json({ message: 'Menu item created', menuItem });
   } catch (error) {
