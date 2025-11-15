@@ -60,11 +60,11 @@ function Orders({ user }) {
   return (
     <div className="orders-container">
       <h2>📦 Orders</h2>
-      {orders.length === 0 ? (
+      {Array.isArray(orders) && orders.length === 0 ? (
         <p className="no-orders">No orders yet</p>
       ) : (
         <div className="orders-list">
-          {orders.map(order => (
+          {(Array.isArray(orders) ? orders : []).map(order => (
             <div key={order._id} className="order-card">
               <div className="order-header">
                 <div className="order-info">
