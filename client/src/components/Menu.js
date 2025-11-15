@@ -90,7 +90,7 @@ function Menu({ user }) {
   return (
     <div className="menu-container">
       <div className="menu-grid">
-        {menuItems.map(item => (
+        {(Array.isArray(menuItems) ? menuItems : []).map(item => (
           <div key={item._id} className="menu-card">
             <h3>{item.name}</h3>
             <p className="price">{item.price} ₸</p>
