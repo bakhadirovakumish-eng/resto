@@ -1,4 +1,6 @@
+
 const mongoose = require('mongoose');
+require('./Modifier');
 
 const menuItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
