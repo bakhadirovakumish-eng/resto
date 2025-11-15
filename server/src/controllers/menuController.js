@@ -35,4 +35,13 @@ const getMenuByLocation = async (req, res) => {
   }
 };
 
-module.exports = { createMenuItem, getMenuByLocation };
+const getAllMenuItems = async (req, res) => {
+  try {
+    const menuItems = await MenuItem.find().populate('category').populate('modifiers');
+    res.json(menuItems);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch menu items', error: error.message });
+  }
+};
+
+module.exports = { createMenuItem, getMenuByLocation, getAllMenuItems };
