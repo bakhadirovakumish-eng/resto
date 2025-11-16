@@ -14,7 +14,8 @@ function Menu({ user }) {
   const fetchMenu = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('/api/menu', {
+      const API_URL = process.env.REACT_APP_API_URL || 'https://resto-34h7.onrender.com';
+      const response = await axios.get(`${API_URL}/api/menu`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMenuItems(response.data);
