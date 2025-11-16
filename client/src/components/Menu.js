@@ -3,23 +3,21 @@ import axios from 'axios';
 
 function Menu({ user }) {
   const [menuItems, setMenuItems] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
     fetchMenu();
   }, [user]);
 
   const fetchMenu = async () => {
     try {
       const token = localStorage.getItem('token');
-      // Mock location ID - in production, this would be dynamic
-      const response = await axios.get('/api/menu/1', {
+      const response = await axios.get('/api/menu', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setMenuItems(response.data.menuItems);
-      setCategories(response.data.categories);
+      setMenuItems(response.data);
     } catch (error) {
       console.log('Using demo menu data');
       setMenuItems(getDemoMenu());
