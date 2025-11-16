@@ -67,7 +67,8 @@ function Menu({ user }) {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.post('/api/orders', {
+      const API_URL = process.env.REACT_APP_API_URL || 'https://resto-34h7.onrender.com';
+      await axios.post(`${API_URL}/orders`, {
         items: cart.map(c => ({ menuItem: c._id, quantity: c.quantity })),
         location: '1',
         deliveryType: 'dine-in'
