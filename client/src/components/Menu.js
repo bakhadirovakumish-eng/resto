@@ -83,6 +83,10 @@ function Menu({ user }) {
 
   const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
+
+  // Для отладки: выводим, что приходит из API
+  console.log('menuItems:', menuItems);
+
   if (loading) return <div className="menu-loading">Loading menu...</div>;
 
   return (
